@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnController : MonoBehaviour {
+public class TargetSpawnController : MonoBehaviour {
     [SerializeField] private List<GameObject> _poliminos = new List<GameObject>();
 
     private Transform _firstSpawnPoint, _secondSpawnPoint;
 
-    private float _timeToWait = 5f;
+    private float _timeToWait = 4f;
     private float _previousTime = 0f;
 
     private void Start() {
@@ -17,21 +17,24 @@ public class SpawnController : MonoBehaviour {
 
     private void Update() {
         if (Time.time - _previousTime > _timeToWait) {
-            InstantiatePolyomino(_firstSpawnPoint);
-            InstantiatePolyomino(_secondSpawnPoint);
+            StartCoroutine(InstantiatePolyomino(_firstSpawnPoint));
+            StartCoroutine(InstantiatePolyomino(_secondSpawnPoint));
             _previousTime = Time.time;
         }
     }
 
-    private void InstantiatePolyomino(Transform positionToSpawn) {
-        int chooseRandomObj = Random.Range(0, _poliminos.Count);
-        Instantiate(_poliminos[chooseRandomObj], positionToSpawn.position, ObjRotation());
+    private IEnumerator InstantiatePolyomino(Transform positionToSpawn) {
+        int randomWait = Random.Range(3, 5);
+        int randomObj = Random.Range(0, _poliminos.Count);
+        yield return new WaitForSeconds(randomWait);
+        GameObject go = Instantiate(_poliminos[randomObj], positionToSpawn.position, ObjRotation());
+        //go.GetComponent<Rigidbody2D>().;
     }
 
     private Quaternion ObjRotation() {
-        int chooseRandomRotation = Random.Range(0, 4);
+        int randomRotation = Random.Range(0, 4);
         Quaternion rotation;
-        switch (chooseRandomRotation) {
+        switch (randomRotation) {
             case 0:
                 rotation = Quaternion.Euler(0,0,0);
                 break;
