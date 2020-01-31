@@ -131,7 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 55232666}
   m_Layer: 0
-  m_Name: Second Spawning Point
+  m_Name: Player Second Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +261,7 @@ GameObject:
   m_Component:
   - component: {fileID: 549793818}
   m_Layer: 0
-  m_Name: First Spawning Point
+  m_Name: Player First Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -291,7 +291,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623471074}
   m_Layer: 0
-  m_Name: Second Spawning Point
+  m_Name: Target Second Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -502,7 +502,7 @@ GameObject:
   m_Component:
   - component: {fileID: 930372354}
   m_Layer: 0
-  m_Name: Third Spawning Point
+  m_Name: Player Third Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -532,7 +532,7 @@ GameObject:
   m_Component:
   - component: {fileID: 975162602}
   m_Layer: 0
-  m_Name: Fifth Spawning Point
+  m_Name: Player Fifth Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -552,6 +552,63 @@ Transform:
   m_Father: {fileID: 1563011778}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1119967739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1119967741}
+  - component: {fileID: 1119967740}
+  m_Layer: 0
+  m_Name: Spawn Points
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1119967740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119967739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39cd4f4962ea40f40a7d2343a1ef6485, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _poliminos:
+  - {fileID: 5367485555129827707, guid: 59090368acc4a9543b7f3637a864c1f6, type: 3}
+  - {fileID: 216247718713886744, guid: 364913456168451498c080de3b9983fd, type: 3}
+  - {fileID: 2428680707061815241, guid: e363df594c509ce46af6d86f6a924995, type: 3}
+  - {fileID: 6854755386029075426, guid: 9fe94f4592451524ababe3653bfaaea6, type: 3}
+  - {fileID: 6825648372810550025, guid: 5b805d385662137469653a7a870ef11f, type: 3}
+  - {fileID: 2869169243571034106, guid: 4d1d0bb9cc54c20449339ac4db41cf55, type: 3}
+  - {fileID: 8926854378400837892, guid: 4062f2fe14138294faa661f5ecc5d2ce, type: 3}
+  - {fileID: 3677446526962719366, guid: c85d847cc09c9cb4e97de70cfaab14bb, type: 3}
+  - {fileID: 6141052637389475821, guid: a4665803bab12394e8b379b0ae96e9ba, type: 3}
+  - {fileID: 3791490423332651040, guid: aee6df87ee1a1f143950cf30a151658e, type: 3}
+  - {fileID: 5716870344450251250, guid: 4a710764ea2cb454d9f9dd609e3f5303, type: 3}
+--- !u!4 &1119967741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119967739}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1502113477}
+  - {fileID: 1563011778}
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1258263325
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +619,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1258263326}
   m_Layer: 0
-  m_Name: Fourth Spawning Point
+  m_Name: Player Fourth Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -592,7 +649,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415374319}
   m_Layer: 0
-  m_Name: Sixth Spawning Point
+  m_Name: Player Sixth Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -694,7 +751,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1502113477}
-  - component: {fileID: 1502113476}
   m_Layer: 0
   m_Name: Target Spawns
   m_TagString: Untagged
@@ -702,24 +758,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1502113476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502113475}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39cd4f4962ea40f40a7d2343a1ef6485, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poliminos:
-  - {fileID: 2118236990053989621, guid: 21ee9f0a99cb8734d8aa95e4e0ac2943, type: 3}
-  - {fileID: 6029989759966225331, guid: ab232da1202acaf429023e8a7719673b, type: 3}
-  - {fileID: 5373916758750266352, guid: 87dcfd8d3f9bb394eb908b9fd9c21541, type: 3}
-  - {fileID: 6289662447081839203, guid: ee8af7141d0287843a1af70c2642f99c, type: 3}
-  - {fileID: 5029809099081593437, guid: e8d7dee1b382f0642a9feb15d4395543, type: 3}
 --- !u!4 &1502113477
 Transform:
   m_ObjectHideFlags: 0
@@ -727,14 +765,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1502113475}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1806760655}
   - {fileID: 623471074}
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_Father: {fileID: 1119967741}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1563011776
 GameObject:
@@ -745,7 +783,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1563011778}
-  - component: {fileID: 1563011777}
   m_Layer: 0
   m_Name: Player Spawns
   m_TagString: Untagged
@@ -753,24 +790,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1563011777
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1563011776}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c764b641cfff2248a755f4f3f6e6fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _poliminos:
-  - {fileID: 2118236990053989621, guid: 21ee9f0a99cb8734d8aa95e4e0ac2943, type: 3}
-  - {fileID: 6029989759966225331, guid: ab232da1202acaf429023e8a7719673b, type: 3}
-  - {fileID: 5373916758750266352, guid: 87dcfd8d3f9bb394eb908b9fd9c21541, type: 3}
-  - {fileID: 6289662447081839203, guid: ee8af7141d0287843a1af70c2642f99c, type: 3}
-  - {fileID: 5029809099081593437, guid: e8d7dee1b382f0642a9feb15d4395543, type: 3}
 --- !u!4 &1563011778
 Transform:
   m_ObjectHideFlags: 0
@@ -778,7 +797,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563011776}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -790,8 +809,8 @@ Transform:
   - {fileID: 1415374319}
   - {fileID: 2046697743}
   - {fileID: 1768539278}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1119967741}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1768539277
 GameObject:
@@ -803,7 +822,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1768539278}
   m_Layer: 0
-  m_Name: Eighth Spawning Point
+  m_Name: Player Eighth Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -833,7 +852,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806760655}
   m_Layer: 0
-  m_Name: First Spawning Point
+  m_Name: Target First Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -863,7 +882,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046697743}
   m_Layer: 0
-  m_Name: Seventh Spawning Point
+  m_Name: Player Seventh Spawning Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
