@@ -3,21 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetPolyminoController : MonoBehaviour {
-    private float rightLimit = -40f;
+    private float rightLimit = -5;
 
-    private Rigidbody2D rb;
+    private float prevTime;
+    private float fallTime = 0.4f;
 
-    private float speed = 2f;
+    public Vector3 rotationPoint;
 
     private void Start() {
-        rb = GetComponent<Rigidbody2D>();
-        tag = "Target";
+        int randomRotation = Random.Range(0, 4);
+        switch (randomRotation) {
+            case 0:
+                break;
+            case 1:
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 90);
+                break;
+            case 2:
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 180);
+                break;
+            default:
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 360);
+                break;
+        }
     }
 
     void FixedUpdate() {
-        if (transform.position.x > rightLimit) 
-            rb.velocity = Vector2.left * speed;
-        else 
+        if (transform.position.x < rightLimit)
             Destroy(gameObject);
+
+        if (Time.time - prevTime > fallTime) {
+            transform.position += new Vector3(-1, 0, 0);
+            prevTime = Time.time;
+        }
     }
 }

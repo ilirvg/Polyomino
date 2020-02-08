@@ -4,13 +4,26 @@ using UnityEngine;
 
 public class PlayerPolyminoController : MonoBehaviour {
 
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
 
-    List<GameObject> currentCollisions = new List<GameObject>();
+    public Vector3 rotationPoint;
 
     private void Start() {
-        rb = GetComponent<Rigidbody2D>();
-        tag = "Player";
+        //rb = GetComponent<Rigidbody2D>();
+        int randomRotation = Random.Range(0, 4);
+        switch (randomRotation) {
+            case 0:
+                break;
+            case 1:
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 90);
+                break;
+            case 2:
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 180);
+                break;
+            default:
+                transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 360);
+                break;
+        }
     }
 
     private void Update() {
@@ -22,70 +35,6 @@ public class PlayerPolyminoController : MonoBehaviour {
             if (hit.collider != null) {
                 hit.collider.attachedRigidbody.AddForce(Vector2.up * 25);
             }
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision) {
-        if(collision.gameObject.tag == "Target") {
-            Destroy(rb);
-            transform.SetParent(collision.transform);
-
-            currentCollisions.Add(collision.gameObject);
-
-            // Print the entire list to the console.
-            foreach (GameObject gObject in currentCollisions) {
-                Debug.Log(gObject.name);
-            }
-
-            //if (IsMatch(collision.gameObject.name)) {
-            //    Debug.Log("++");
-            //}
-            //else {
-            //    Debug.Log("--");
-            //}
-            Destroy(collision.gameObject);
-        }
-    }
-
-    private bool IsMatch(string targetName) {
-        if (gameObject.name == "1(Clone)") {
-            if (targetName == "1(Clone)" || targetName == "5(Clone)" || targetName == "8(Clone)") {
-                
-                return true;
-            }
-            else
-                return false;
-        }
-        else if(gameObject.name == "2(Clone)") {
-            if (targetName == "2(Clone)" || targetName == "7(Clone)") {
-                return true;
-            }
-            else
-                return false;
-        }
-        else if (gameObject.name == "3(Clone)") {
-            if (targetName == "4(Clone)") {
-                return true;
-            }
-            else
-                return false;
-        }
-        else if (gameObject.name == "4(Clone)") {
-            if (targetName == "3(Clone)" || targetName == "9(Clone)") {
-                return true;
-            }
-            else
-                return false;
-        }
-        else if (gameObject.name == "5(Clone)") {
-            if (targetName == "1(Clone)" || targetName == "6(Clone)") {
-                return true;
-            }
-            else
-                return false;
-        }
-        else {
-            return false;
         }
     }
 }
