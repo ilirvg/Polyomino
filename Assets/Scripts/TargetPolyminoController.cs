@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetPolyminoController : MonoBehaviour {
-    private float rightLimit = -5;
+    private float _rightLimit = -5;
 
-    private float prevTime;
-    private float fallTime = 0.4f;
+    private float _prevTime;
+    private float _waitTime = 0.4f;
 
     public Vector3 rotationPoint;
 
@@ -28,12 +28,24 @@ public class TargetPolyminoController : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (transform.position.x < rightLimit)
+        if (transform.position.x < _rightLimit)
             Destroy(gameObject);
 
-        if (Time.time - prevTime > fallTime) {
+        if (Time.time - _prevTime > _waitTime) {
             transform.position += new Vector3(-1, 0, 0);
-            prevTime = Time.time;
+            _prevTime = Time.time;
         }
+    }
+
+    private bool ValidMove() {
+        foreach (Transform mino in transform) {
+
+            int roundedX = Mathf.RoundToInt(mino.transform.position.x);
+            int roundedY = Mathf.RoundToInt(mino.transform.position.y);
+
+            if (GameBoard.grid[roundedX, roundedY] != null) 
+                return false;
+        }
+        return true;
     }
 }

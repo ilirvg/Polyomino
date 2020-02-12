@@ -6,10 +6,15 @@ public class SpawnController : MonoBehaviour {
     [SerializeField] private List<GameObject> _targetPoliminos = new List<GameObject>();
     [SerializeField] private List<GameObject> _playerPoliminos = new List<GameObject>();
 
-    private Transform[] _targetSpawnPoints = new Transform[2];
-    private Transform[] _playerSpawnPoints = new Transform[8];
+    //public static Transform selectedPolymino;
+    //public static int selectedPolyminoInt = 0;
 
-    private float _timeToWait = 2f;
+    private Transform[] _targetSpawnPoints = new Transform[2];
+    //public static Transform[] playerSpawnPoints = new Transform[5];
+
+    public static List<Transform> playerSpawnPoints = new List<Transform>();
+
+    private float _waitTime = 2f;
     private float _previousTime = 0f;
 
     private int targetSpawnPoint;
@@ -19,15 +24,17 @@ public class SpawnController : MonoBehaviour {
             _targetSpawnPoints[i] = transform.GetChild(0).GetChild(i);
         }
 
-        for (int i = 0; i < _playerSpawnPoints.Length; i++) {
-            _playerSpawnPoints[i] = transform.GetChild(1).GetChild(i);
-            //StartCoroutine(InstantiatePolyomino(_playerSpawnPoints[i], 0, false));
+        for (int i = 0; i < 5; i++) {
+            playerSpawnPoints.Add(transform.GetChild(1).GetChild(i));
+            InstantiatePlayers(playerSpawnPoints[i]);
         }
+
+        //selectedPolymino = playerSpawnPoints[selectedPolyminoInt].GetChild(0);
 
     }
 
     private void Update() {
-        if (Time.time - _previousTime > _timeToWait) {
+        if (Time.time - _previousTime > _waitTime) {
             Instantiate(_targetPoliminos[Random.Range(0, _targetPoliminos.Count)],
                 _targetSpawnPoints[targetSpawnPoint].position, Quaternion.identity);
 
@@ -37,7 +44,8 @@ public class SpawnController : MonoBehaviour {
         }
     }
 
-    //private void InstantiatePlayers() {
-    //    Instantiate(_playerPoliminos[Random.Range(0, _playerPoliminos.Count)], _playerPoliminos[targetSpawnPoint].position, Quaternion.identity);
-    //}
+    private void InstantiatePlayers(Transform transform) {
+        GameObject go = Instantiate(_playerPoliminos[Random.Range(0, _playerPoliminos.Count)], transform.position, Quaternion.identity);
+        go.transform.SetParent(transform);
+    }
 }
