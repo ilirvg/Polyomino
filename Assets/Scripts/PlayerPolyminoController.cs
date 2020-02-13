@@ -29,6 +29,8 @@ public class PlayerPolyminoController : MonoBehaviour {
             int roundedY = Mathf.RoundToInt(mino.transform.position.y);
 
             GameBoard.grid[roundedX, roundedY] = mino;
+
+            Debug.Log(GameBoard.grid[roundedX, roundedY]);
         }
 
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TargetPolyminoController : MonoBehaviour {
-    private float _rightLimit = -5;
+    private float _rightLimit = 2;
 
     private float _prevTime;
     private float _waitTime = 0.4f;
@@ -28,11 +28,16 @@ public class TargetPolyminoController : MonoBehaviour {
     }
 
     void Update() {
-        if(ValidMove() == false) {
+        if (ValidMove() == false) {
             Debug.Log("Collide");
-        }
-        if (transform.position.x < _rightLimit)
             Destroy(gameObject);
+        }
+        if (transform.position.x <= _rightLimit) {
+            
+            Destroy(gameObject);
+            Debug.Log("Destroy");
+        }
+        
 
         if (Time.time - _prevTime > _waitTime) {
             transform.position += new Vector3(-1, 0, 0);
