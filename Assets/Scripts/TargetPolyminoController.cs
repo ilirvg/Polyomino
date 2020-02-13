@@ -27,7 +27,10 @@ public class TargetPolyminoController : MonoBehaviour {
         }
     }
 
-    void FixedUpdate() {
+    void Update() {
+        if(ValidMove() == false) {
+            Debug.Log("Collide");
+        }
         if (transform.position.x < _rightLimit)
             Destroy(gameObject);
 
@@ -43,9 +46,13 @@ public class TargetPolyminoController : MonoBehaviour {
             int roundedX = Mathf.RoundToInt(mino.transform.position.x);
             int roundedY = Mathf.RoundToInt(mino.transform.position.y);
 
-            if (GameBoard.grid[roundedX, roundedY] != null) 
+            if (GameBoard.grid[roundedX, roundedY] != null)
                 return false;
         }
         return true;
+    }
+
+    public void UpdateGameBoard() {
+
     }
 }

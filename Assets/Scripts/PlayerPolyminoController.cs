@@ -22,31 +22,15 @@ public class PlayerPolyminoController : MonoBehaviour {
         }
     }
 
-    private void Update() {
-        //if (Input.GetMouseButtonDown(0)) {
-        //    Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+    public void AddToGrid() {
+        foreach (Transform mino in transform) {
 
-        //    RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
-        //    if (hit.collider != null) {
-        //        Debug.Log(hit.collider.name);
-        //        StartCoroutine(LoopFunction(1f, hit.transform.parent));
-        //    }
-        //}
+            int roundedX = Mathf.RoundToInt(mino.transform.position.x);
+            int roundedY = Mathf.RoundToInt(mino.transform.position.y);
 
-        
-    }
-
-    private IEnumerator LoopFunction(float waitTime, Transform obj) {
-        Debug.Log("Called");
-        Debug.Log(obj.name);
-        int i = 0;
-        while (obj.position.y < 20) {
-            obj.position += new Vector3(0, 1, 0);
-            Debug.Log("step " + i);
-            i++;
-            yield return new WaitForSeconds(waitTime);
+            GameBoard.grid[roundedX, roundedY] = mino;
         }
 
     }
+
 }
