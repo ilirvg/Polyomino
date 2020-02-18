@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GameBoard : MonoBehaviour {
-    public static Transform[,] grid = new Transform[40, 16];
+    public static Transform[,] grid = new Transform[40, 22];
 
 }

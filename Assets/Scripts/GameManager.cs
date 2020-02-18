@@ -42,12 +42,13 @@ public class GameManager : MonoBehaviour {
         obj.parent = null;
         ChangeSelectedpolymino(selectedPolyminoInt + 1);
 
-        while (obj.position.y < 16) {
+        while (obj.position.y <= 18) {
+            Debug.Log(obj.position.y);
             obj.position += new Vector3(0, 1, 0);
-            obj.GetComponent<PlayerPolyminoController>().AddToGrid();
+            obj.GetComponent<PlayerPolyminoController>().UpdateGrid();
             yield return new WaitForSeconds(waitTime);
         }
-        Destroy(gameObject);
+        Destroy(obj.gameObject);
     }
 
     private IEnumerator SelectedPlayer(float waitTime) {

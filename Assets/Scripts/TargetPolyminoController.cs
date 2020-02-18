@@ -28,18 +28,14 @@ public class TargetPolyminoController : MonoBehaviour {
     }
 
     void Update() {
-        if (ValidMove() == false) {
-            Debug.Log("Collide");
-            Destroy(gameObject);
-        }
-        if (transform.position.x <= _rightLimit) {
-            
-            Destroy(gameObject);
-            Debug.Log("Destroy");
-        }
-        
+        PolyminoHorizontalMove();
+    }
 
-        if (Time.time - _prevTime > _waitTime) {
+    private void PolyminoHorizontalMove() {
+        if (ValidMove() == false) 
+            Destroy(gameObject);
+        
+        if (Time.time - _prevTime > _waitTime) { 
             transform.position += new Vector3(-1, 0, 0);
             _prevTime = Time.time;
         }
@@ -47,17 +43,17 @@ public class TargetPolyminoController : MonoBehaviour {
 
     private bool ValidMove() {
         foreach (Transform mino in transform) {
-
             int roundedX = Mathf.RoundToInt(mino.transform.position.x);
             int roundedY = Mathf.RoundToInt(mino.transform.position.y);
 
-            if (GameBoard.grid[roundedX, roundedY] != null)
+            if (roundedX <= _rightLimit)
+                return false;
+
+            if (GameBoard.grid[roundedX, roundedY] != null && GameBoard.grid[roundedX, roundedY] != transform)
                 return false;
         }
         return true;
     }
 
-    public void UpdateGameBoard() {
-
-    }
+    
 }
