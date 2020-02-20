@@ -333,10 +333,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 816246125638008136}
-  - component: {fileID: 5243062290068128750}
+  - component: {fileID: 5273106476469617377}
   m_Layer: 0
   m_Name: J Player
-  m_TagString: Target
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,7 +359,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5243062290068128750
+--- !u!114 &5273106476469617377
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,7 +368,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 816246125638008137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9fe192a493be44b86005050d2d9782, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e282a78a88853f448e74fd0903b4f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 1, y: 1, z: 0}

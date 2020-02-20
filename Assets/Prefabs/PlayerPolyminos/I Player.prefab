@@ -225,10 +225,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5054104260809949752}
-  - component: {fileID: 6661094112415274328}
+  - component: {fileID: -4364490182544820733}
   m_Layer: 0
   m_Name: I Player
-  m_TagString: Target
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -251,7 +251,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6661094112415274328
+--- !u!114 &-4364490182544820733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -260,7 +260,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5054104260809949759}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b9fe192a493be44b86005050d2d9782, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e282a78a88853f448e74fd0903b4f4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rotationPoint: {x: 1.5, y: 0.5, z: 0}

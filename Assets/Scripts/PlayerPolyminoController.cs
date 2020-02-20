@@ -22,20 +22,20 @@ public class PlayerPolyminoController : MonoBehaviour {
         }
     }
 
-    public void UpdateGrid() {
-        for (int y = 0; y < 18; ++y) {
-            for (int x = 0; x < 40; x++) {
-                if (GameBoard.grid[x, y] != null && GameBoard.grid[x, y].parent == transform) {
-                    GameBoard.grid[x, y] = null;
-                }
-            }
-        }
+    //public void AddToGrid() {
+    //    for (int y = 0; y < 18; ++y) {
+    //        for (int x = 0; x < 40; x++) {
+    //            if (GameBoard.grid[x, y] != null && GameBoard.grid[x, y].parent == transform) {
+    //                GameBoard.grid[x, y] = null;
+    //            }
+    //        }
+    //    }
 
-        foreach (Transform mino in transform) {
-            int roundedX = Mathf.RoundToInt(mino.transform.position.x);
-            int roundedY = Mathf.RoundToInt(mino.transform.position.y);
-            GameBoard.grid[roundedX, roundedY] = mino;
-        }
+    //    foreach (Transform mino in transform) {
+    //        int roundedX = Mathf.RoundToInt(mino.transform.position.x);
+    //        int roundedY = Mathf.RoundToInt(mino.transform.position.y);
+    //        GameBoard.grid[roundedX, roundedY] = mino;
+    //    }
 
-    }
+    //}
 }
