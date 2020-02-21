@@ -7,17 +7,6 @@ public class GameBoard : MonoBehaviour {
     public static Transform[,] grid = new Transform[40, 22];
 
 
-    private void Start() {
-        for (int y = 0; y < 22; ++y) {
-            for (int x = 0; x < 40; ++x) {
-
-                //if (GameBoard.grid[x, y] != null) {
-                    //Debug.Log("Clear");
-                    GameBoard.grid[x, y] = null;
-                //}
-            }
-        }
-    }
     public static void PrintBoard() {
         string arrayOutput = "";
 

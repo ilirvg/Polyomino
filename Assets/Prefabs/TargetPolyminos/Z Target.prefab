@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 4311241002492623988}
   - component: {fileID: 7838654427858470076}
   m_Layer: 0
-  m_Name: Z
+  m_Name: Z Target
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
