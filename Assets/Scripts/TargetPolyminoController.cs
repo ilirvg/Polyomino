@@ -11,14 +11,11 @@ public class TargetPolyminoController : MonoBehaviour {
 
     public Vector3 rotationPoint;
 
-    private int[] firstMino = new int[2];
-    private int[] secondMino = new int[2];
-    private int[] thirdMino = new int[2];
-    private int[] fourthMino = new int[2];
-
-    //private int[,] lastMinoPositions = new int[4, 2];
+    private List<int[]> test = new List<int[]>();
 
     private void Start() {
+        
+
         int randomRotation = Random.Range(0, 4);
         switch (randomRotation) {
             case 0:
@@ -32,6 +29,15 @@ public class TargetPolyminoController : MonoBehaviour {
             default:
                 transform.RotateAround(transform.TransformPoint(rotationPoint), new Vector3(0, 0, 1), 360);
                 break;
+        }
+
+        //foreach (Transform mino in transform) {
+
+        //    test.Add(new int[2]);
+        //}
+
+        for (int i = 0; i < transform.childCount; i++) {
+            test.Add(new int[2]);
         }
     }
 
@@ -65,7 +71,6 @@ public class TargetPolyminoController : MonoBehaviour {
     }
 
     private bool ValidMove() {
-        
         foreach (Transform mino in transform) {
             int roundedX = Mathf.RoundToInt(mino.transform.position.x);
             int roundedY = Mathf.RoundToInt(mino.transform.position.y);
@@ -73,8 +78,7 @@ public class TargetPolyminoController : MonoBehaviour {
             if (roundedX <= _rightLimit)
                 return false;
 
-            if (GameBoard.grid[roundedX, roundedY] != null && GameBoard.grid[roundedX, roundedY].parent != transform) {// 
-                Debug.Log("X " + roundedX + " Y " + roundedY);
+            if (GameBoard.grid[roundedX, roundedY] != null && GameBoard.grid[roundedX, roundedY].parent != transform) {
                 return false;
             }
                 
@@ -83,59 +87,20 @@ public class TargetPolyminoController : MonoBehaviour {
     }
 
     public void UpdateGrid() {
-        //for (int y = 0; y < 22; y++) {
-        //    for (int x = 0; x < 40; x++) {
-        //        if (GameBoard.grid[x, y] != null ) {//&& GameBoard.grid[x, y].parent == transform
-        //            GameBoard.grid[x, y] = null;
-        //        }
-        //    }
-        //}
-
-        for (int i = 0; i < 4; i++) {
-            if (i == 0) {
-                GameBoard.grid[firstMino[0], firstMino[1]] = null;
-            }
-            else if (i == 1) {
-                GameBoard.grid[secondMino[0], secondMino[1]] = null;
-            }
-            else if (i == 2) {
-                GameBoard.grid[thirdMino[0], thirdMino[1]] = null;
-            }
-            else if (i == 3) {
-                GameBoard.grid[fourthMino[0], fourthMino[1]] = null;
-            }
-        }
-        
-
-        //foreach (Transform mino in transform) {
-        //    int roundedX = Mathf.RoundToInt(mino.transform.position.x);
-        //    int roundedY = Mathf.RoundToInt(mino.transform.position.y);
-        //    GameBoard.grid[roundedX, roundedY] = mino;
-        //}
+        int a = 0;
         for (int i = 0; i < transform.childCount; i++) {
+            if (GameBoard.grid[test[i][0], test[i][1]] != null) {
+                a++;
+                GameBoard.grid[test[i][0], test[i][1]] = null;
+            }
+                
+
             int roundedX = Mathf.RoundToInt(transform.GetChild(i).transform.position.x);
             int roundedY = Mathf.RoundToInt(transform.GetChild(i).transform.position.y);
             GameBoard.grid[roundedX, roundedY] = transform.GetChild(i);
-
-            if (i == 0) {
-                firstMino[0] = roundedX;
-                firstMino[1] = roundedY;
-            }
-            else if (i == 1) {
-                secondMino[0] = roundedX;
-                secondMino[1] = roundedY;
-            }
-            else if (i == 2) {
-                thirdMino[0] = roundedX;
-                thirdMino[1] = roundedY;
-            }
-            else if (i == 3) {
-                fourthMino[0] = roundedX;
-                fourthMino[1] = roundedY;
-            }
+            test[i] = new int[] { roundedX, roundedY };
         }
-        
-
+        Debug.Log(gameObject.name + " " + a);
         GameBoard.PrintBoard();
     }
 }

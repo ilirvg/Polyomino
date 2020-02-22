@@ -10,11 +10,11 @@ public class GameBoard : MonoBehaviour {
     public static void PrintBoard() {
         string arrayOutput = "";
 
-        //int iMax = grid.GetLength(0) - 1;
-        //int jMax = grid.GetLength(1) - 1;
+        int iMax = grid.GetLength(0) - 1;
+        int jMax = grid.GetLength(1) - 1;
 
-        for (int j = 16; j >= 0; j--) {
-            for (int i = 0; i <= 30; i++) {
+        for (int j = jMax; j >= 0; j--) {
+            for (int i = 0; i <= iMax; i++) {
                 if (grid[i, j] == null) {
                     arrayOutput += "N   ";
                 }
