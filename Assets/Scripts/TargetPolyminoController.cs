@@ -11,11 +11,9 @@ public class TargetPolyminoController : MonoBehaviour {
 
     public Vector3 rotationPoint;
 
-    private List<int[]> test = new List<int[]>();
+    private List<int[]> minoPrevPositionList = new List<int[]>();
 
     private void Start() {
-        
-
         int randomRotation = Random.Range(0, 4);
         switch (randomRotation) {
             case 0:
@@ -31,14 +29,8 @@ public class TargetPolyminoController : MonoBehaviour {
                 break;
         }
 
-        //foreach (Transform mino in transform) {
-
-        //    test.Add(new int[2]);
-        //}
-
-        for (int i = 0; i < transform.childCount; i++) {
-            test.Add(new int[2]);
-        }
+        foreach (Transform mino in transform) 
+            minoPrevPositionList.Add(new int[2]);
     }
 
     void Update() {
@@ -49,13 +41,10 @@ public class TargetPolyminoController : MonoBehaviour {
     private void PolyminoHorizontalMove() {
         if (Time.time - _prevTime > _waitTime) { 
             transform.position += new Vector3(-1, 0, 0);
-
-            if (!ValidMove()) {
+            if (!ValidMove()) 
                 Destroy(gameObject);
-            }
-            else {
+            else 
                 UpdateGrid();
-            }
             _prevTime = Time.time;
         }
     }
@@ -74,33 +63,26 @@ public class TargetPolyminoController : MonoBehaviour {
         foreach (Transform mino in transform) {
             int roundedX = Mathf.RoundToInt(mino.transform.position.x);
             int roundedY = Mathf.RoundToInt(mino.transform.position.y);
-
             if (roundedX <= _rightLimit)
                 return false;
-
-            if (GameBoard.grid[roundedX, roundedY] != null && GameBoard.grid[roundedX, roundedY].parent != transform) {
+            if (GameBoard.grid[roundedX, roundedY] != null && GameBoard.grid[roundedX, roundedY].parent != transform) 
                 return false;
-            }
-                
         }
         return true;
     }
 
     public void UpdateGrid() {
-        int a = 0;
         for (int i = 0; i < transform.childCount; i++) {
-            if (GameBoard.grid[test[i][0], test[i][1]] != null) {
-                a++;
-                GameBoard.grid[test[i][0], test[i][1]] = null;
-            }
-                
+            if (GameBoard.grid[minoPrevPositionList[i][0], minoPrevPositionList[i][1]] != null)
+                GameBoard.grid[minoPrevPositionList[i][0], minoPrevPositionList[i][1]] = null;
+        }
 
+        for (int i = 0; i < transform.childCount; i++) {
             int roundedX = Mathf.RoundToInt(transform.GetChild(i).transform.position.x);
             int roundedY = Mathf.RoundToInt(transform.GetChild(i).transform.position.y);
             GameBoard.grid[roundedX, roundedY] = transform.GetChild(i);
-            test[i] = new int[] { roundedX, roundedY };
+            minoPrevPositionList[i] = new int[] { roundedX, roundedY };
         }
-        Debug.Log(gameObject.name + " " + a);
         GameBoard.PrintBoard();
     }
 }

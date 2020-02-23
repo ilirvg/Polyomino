@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour {
             i = 0;
         else if (i >= SpawnController.playerSpawnPoints.Count)
             i = SpawnController.playerSpawnPoints.Count - 1;
-
         selectedPolyminoInt = i;
         StartCoroutine(SelectedPlayer(0f));
     }
