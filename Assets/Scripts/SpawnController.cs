@@ -6,9 +6,9 @@ public class SpawnController : MonoBehaviour {
     [SerializeField] private List<GameObject> _targetPoliminos = new List<GameObject>();
     [SerializeField] private List<GameObject> _playerPoliminos = new List<GameObject>();
 
-    private Transform[] _targetSpawnPoints = new Transform[2];
-    //public static Transform[] playerSpawnPoints = new Transform[5];
+    public Transform _targetPolyminoContainer;
 
+    private Transform[] _targetSpawnPoints = new Transform[2];
     public static List<Transform> playerSpawnPoints = new List<Transform>();
 
     private float _waitTime = 2f;
@@ -29,11 +29,15 @@ public class SpawnController : MonoBehaviour {
 
     private void Update() {
         if (Time.time - _previousTime > _waitTime) {
-            Instantiate(_targetPoliminos[Random.Range(0, _targetPoliminos.Count)],
-                _targetSpawnPoints[targetSpawnPoint].position, Quaternion.identity);
-            targetSpawnPoint = targetSpawnPoint == 0 ? 1 : 0;
+            InstantiateTargets();
             _previousTime = Time.time;
         }
+    }
+
+    private void InstantiateTargets() {
+        GameObject go = Instantiate(_targetPoliminos[Random.Range(0, _targetPoliminos.Count)], _targetSpawnPoints[targetSpawnPoint].position, Quaternion.identity);
+        targetSpawnPoint = targetSpawnPoint == 0 ? 1 : 0;
+        go.transform.SetParent(_targetPolyminoContainer);
     }
 
     public IEnumerator InstantiatePlayers(float waitTime, Transform transform) {
