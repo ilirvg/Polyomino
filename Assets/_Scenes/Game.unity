@@ -4979,7 +4979,6 @@ MonoBehaviour:
   - {fileID: 9005891416429056492, guid: ab8a1fedf47a26d4daba11a8d33a31d2, type: 3}
   - {fileID: 6363670053770937655, guid: 2da8558147fb3b544bb582be9e477cd9, type: 3}
   _targetPolyminoContainer: {fileID: 215936186}
-  _playerPolyminoContainer: {fileID: 881203524}
 --- !u!4 &1119967741
 Transform:
   m_ObjectHideFlags: 0
