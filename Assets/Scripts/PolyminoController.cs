@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PolyminoController : MonoBehaviour {
     private float _rightLimit = 0;
-    private float _upLimit = 18;
+    private float _upLimit = 16;
 
     private bool isRightLimit;
     private bool brakeLoop;
@@ -16,7 +16,7 @@ public class PolyminoController : MonoBehaviour {
 
     private List<int[]> minoPrevPositionList = new List<int[]>();
 
-    private List<int[]> minoOccupiedPositionList = new List<int[]>();
+    public List<int[]> minoOccupiedPositionList = new List<int[]>();
 
     private void Start() {
         int randomRotation = Random.Range(0, 4);
@@ -46,11 +46,12 @@ public class PolyminoController : MonoBehaviour {
         if (Time.time - _prevTime > _waitTime) { 
             transform.position += new Vector3(-1, 0, 0);
             if (!ValidMove()) {
+                transform.position -= new Vector3(-1, 0, 0);
                 DestroyPolymino();
                 return;
             }
             else
-                UpdateGrid();
+                UpdateBoard();
 
             if (brakeLoop) {
                 _prevTime = Time.time;
@@ -62,16 +63,16 @@ public class PolyminoController : MonoBehaviour {
         }
     }
 
-
-    public IEnumerator PolyminoVerticalMove() {//float waitTime
-        while (transform.position.y <= 18 ) {
+    public IEnumerator PolyminoVerticalMove() {
+        while (transform.position.y <= _upLimit) {
             transform.position += new Vector3(0, 1, 0);
             if (!ValidMove()) {
+                transform.position -= new Vector3(0, 1, 0);
                 DestroyPolymino();
                 break;
             }
             else
-                UpdateGrid();
+                UpdateBoard();
 
             if (brakeLoop) {
                 Destroy(gameObject);
@@ -102,7 +103,7 @@ public class PolyminoController : MonoBehaviour {
         return true;
     }
 
-    public void UpdateGrid() {
+    public void UpdateBoard() {
         for (int i = 0; i < transform.childCount; i++) {
             if (GameBoard.grid[minoPrevPositionList[i][0], minoPrevPositionList[i][1]] != null)
                 GameBoard.grid[minoPrevPositionList[i][0], minoPrevPositionList[i][1]] = null;
@@ -118,17 +119,92 @@ public class PolyminoController : MonoBehaviour {
     }
 
     private void DestroyPolymino() {
-        if (isRightLimit) 
+        if (isRightLimit)
             Destroy(gameObject);
-        
+
         else {
             for (int i = 0; i < transform.childCount; i++) {
                 if (GameBoard.grid[minoPrevPositionList[i][0], minoPrevPositionList[i][1]] != null)
                     GameBoard.grid[minoPrevPositionList[i][0], minoPrevPositionList[i][1]] = null;
             }
+
             GameObject go = GameBoard.grid[minoOccupiedPositionList[0][0], minoOccupiedPositionList[0][1]].transform.parent.gameObject;
 
-            go.GetComponent<PolyminoController>().brakeLoop = true;           
+
+
+
+            int firstMinX = 50;
+            int firstMaxX = 0;
+            int firstMinY = 50;
+            int firstMaxY = 0;
+
+            int secondMinX = 50;
+            int secondMaxX = 0;
+            int secondMinY = 50;
+            int secondMaxY = 0;
+
+            foreach (Transform mino in transform) {
+                if (mino.position.x > firstMaxX) {
+                    firstMaxX = Mathf.RoundToInt(mino.position.x);
+                    
+                }
+
+                if (mino.position.x < firstMinX){
+                    firstMinX = Mathf.RoundToInt(mino.position.x);
+                    
+                }
+
+                if (mino.position.y > firstMaxY) {
+                    firstMaxY = Mathf.RoundToInt(mino.position.y);
+                    
+                }
+
+                if (mino.position.y < firstMinY) {
+                    firstMinY = Mathf.RoundToInt(mino.position.y);
+                    
+                }
+
+            }
+
+            foreach (Transform mino in go.transform) {
+                if (mino.position.x > secondMaxX) {
+                    secondMaxX = Mathf.RoundToInt(mino.position.x);
+                    
+                }
+
+                if (mino.position.x < secondMinX) {
+                    secondMinX = Mathf.RoundToInt(mino.position.x);
+                    
+                }
+
+                if (mino.position.y > secondMaxY) {
+                    secondMaxY = Mathf.RoundToInt(mino.position.y);
+                    
+                }
+
+                if (mino.position.y < secondMinY) {
+                    secondMinY = Mathf.RoundToInt(mino.position.y);
+                    
+                }
+            }
+            //Debug.Log("1Max X " + firstMaxX);
+            //Debug.Log("1Min X " + firstMinX);
+            //Debug.Log("1Max Y " + firstMaxY);
+            //Debug.Log("2Min Y " + firstMinY);
+
+
+            //Debug.Log("2Max X " + secondMaxX);
+            //Debug.Log("2Min X " + secondMinX);
+            //Debug.Log("2Max Y " + secondMaxY);
+            //Debug.Log("2Min Y " + secondMinY);
+
+
+            if (firstMinX == secondMinX && firstMaxX == secondMaxX) {
+                Debug.Log("X is OK");
+            }
+
+
+            go.GetComponent<PolyminoController>().brakeLoop = true;
             Destroy(gameObject);
             return;
         }
